@@ -8,8 +8,8 @@
 <meta property="og:title" content="Steve Archuleta — Machine Learning &amp; Financial Engineering">
 <meta property="og:description" content="MScFE, WorldQuant University. Causal-aware ML risk forecasting, GenAI/NLP, and MLOps on Azure.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://stevearchuleta.github.io/">
-<meta property="og:image" content="https://stevearchuleta.github.io/assets/headshot.png">
+<meta property="og:url" content="https://stevearchuleta.com/">
+<meta property="og:image" content="https://stevearchuleta.com/assets/headshot.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -60,6 +60,13 @@
     width:min(300px,85%);height:auto;border-radius:6px;
     border:5px solid #FFFFFF;box-shadow:0 6px 24px rgba(32,40,31,.18);
     display:block;margin-bottom:30px;
+  }
+  .garden-hero{position:relative;margin-bottom:10px}
+  .garden{display:block;width:100%;height:auto}
+  .garden-hero .headshot{position:absolute;left:0;bottom:8%;width:41%;min-width:170px;margin-bottom:0}
+  @media (max-width:560px){
+    .garden{display:none}
+    .garden-hero .headshot{position:static;width:min(300px,85%);margin-bottom:30px}
   }
   .banner-strip{display:block;width:100%;height:190px;object-fit:cover}
   .eyebrow{
@@ -225,13 +232,82 @@
 
 <header id="top">
   <div class="wrap">
-    <img class="headshot" src="assets/headshot.png" alt="Steve Archuleta">
+    <div class="garden-hero">
+      <svg class="garden" viewBox="0 0 680 300" aria-hidden="true" focusable="false">
+        <defs>
+        <g id="g-lf"><path d="M0 0C3 -6 9 -9 14 -8C11 -3 6 0 0 0Z" fill="#3F6B4A"/></g>
+        <g id="g-mw" stroke="#87A98F" stroke-width="1.8" stroke-linecap="round"><line x1="0" y1="0" x2="0" y2="-6"/><line x1="8" y1="0" x2="8.5" y2="-8"/><line x1="16" y1="0" x2="16" y2="-7"/><line x1="24" y1="0" x2="23.5" y2="-8"/><line x1="32" y1="0" x2="32" y2="-6"/></g>
+        <g id="g-flg"><g stroke="#3F6B4A" stroke-width="2" fill="none" stroke-linecap="round"><path d="M0 0C-2 -8 -5 -12 -8 -15"/><path d="M0 0C0 -9 0 -14 1 -19"/><path d="M0 0C2 -8 5 -11 8 -14"/></g><circle cx="-8" cy="-16" r="2.4" fill="#C99211"/><circle cx="1" cy="-20" r="2.4" fill="#C99211"/><circle cx="8" cy="-15" r="2.4" fill="#C99211"/></g>
+        <g id="g-flt"><g stroke="#3F6B4A" stroke-width="2" fill="none" stroke-linecap="round"><path d="M0 0C-2 -8 -5 -12 -8 -15"/><path d="M0 0C0 -9 0 -14 1 -19"/><path d="M0 0C2 -8 5 -11 8 -14"/></g><circle cx="-8" cy="-16" r="2.4" fill="#C99211"/><circle cx="1" cy="-20" r="2.6" fill="#B65C38"/><circle cx="8" cy="-15" r="2.4" fill="#C99211"/></g>
+        </defs>
+        <g transform="translate(0,9)">
+        <g stroke="#87A98F" stroke-width="1.5" opacity="0.75">
+        <line x1="470" y1="285" x2="620" y2="135"/><line x1="515" y1="285" x2="656" y2="144"/>
+        <line x1="560" y1="285" x2="656" y2="189"/><line x1="605" y1="285" x2="656" y2="234"/>
+        <line x1="656" y1="285" x2="516" y2="145"/><line x1="611" y1="285" x2="471" y2="145"/>
+        <line x1="566" y1="285" x2="470" y2="189"/><line x1="521" y1="285" x2="470" y2="234"/>
+        </g>
+        <path d="M560 285C536 240 580 215 556 180C534 150 576 130 560 100C552 84 570 72 562 58" stroke="#3F6B4A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <use href="#g-lf" transform="translate(546,240) rotate(-135) scale(0.9)"/>
+        <use href="#g-lf" transform="translate(572,205) rotate(-40) scale(0.9)"/>
+        <use href="#g-lf" transform="translate(542,160) rotate(-145) scale(0.9)"/>
+        <use href="#g-lf" transform="translate(570,118) rotate(-35) scale(0.85)"/>
+        <circle cx="556" cy="180" r="4" fill="#C99211"/><circle cx="560" cy="100" r="4.5" fill="#B65C38"/>
+        <circle cx="540" cy="232" r="3.2" fill="#C99211"/><circle cx="562" cy="56" r="3.5" fill="#C99211"/>
+        <g stroke="#3F6B4A" stroke-width="2.5" fill="none" stroke-linecap="round">
+        <path d="M372 285C370 240 371 200 372 162"/>
+        <path d="M404 285C402 230 403 180 405 130"/>
+        <path d="M436 285C434 244 435 212 437 174"/>
+        </g>
+        <use href="#g-lf" transform="translate(371,226) rotate(-95) scale(0.75)"/>
+        <use href="#g-lf" transform="translate(404,210) rotate(-85) scale(0.75)"/>
+        <use href="#g-lf" transform="translate(436,238) rotate(-90) scale(0.7)"/>
+        <circle cx="372" cy="158" r="4" fill="#C99211"/><circle cx="370" cy="172" r="3.5" fill="#C99211"/><circle cx="373" cy="186" r="3" fill="#C99211"/>
+        <circle cx="405" cy="126" r="4.5" fill="#B65C38"/><circle cx="403" cy="142" r="4" fill="#B65C38"/><circle cx="404" cy="158" r="3.5" fill="#B65C38"/>
+        <circle cx="437" cy="170" r="4" fill="#C99211"/><circle cx="435" cy="184" r="3.5" fill="#C99211"/>
+        <use href="#g-flg" transform="translate(40,285)"/>
+        <use href="#g-flt" transform="translate(110,285) scale(0.9)"/>
+        <use href="#g-flg" transform="translate(332,285)"/>
+        <use href="#g-flt" transform="translate(462,285) scale(0.95)"/>
+        <use href="#g-flg" transform="translate(648,285) scale(0.9)"/>
+        <use href="#g-mw" transform="translate(4,285)"/><use href="#g-mw" transform="translate(44,285)"/>
+        <use href="#g-mw" transform="translate(84,285)"/><use href="#g-mw" transform="translate(124,285)"/>
+        <use href="#g-mw" transform="translate(164,285)"/><use href="#g-mw" transform="translate(204,285)"/>
+        <use href="#g-mw" transform="translate(244,285)"/><use href="#g-mw" transform="translate(284,285)"/>
+        <use href="#g-mw" transform="translate(324,285)"/><use href="#g-mw" transform="translate(364,285)"/>
+        <use href="#g-mw" transform="translate(404,285)"/><use href="#g-mw" transform="translate(444,285)"/>
+        <use href="#g-mw" transform="translate(484,285)"/><use href="#g-mw" transform="translate(524,285)"/>
+        <use href="#g-mw" transform="translate(564,285)"/><use href="#g-mw" transform="translate(604,285)"/>
+        <use href="#g-mw" transform="translate(644,285)"/>
+        </g>
+        <g stroke="#3F6B4A" stroke-width="3" fill="none" stroke-linecap="round">
+        <path d="M165 268C125 195 60 110 10 72"/>
+        <path d="M165 268C140 175 95 90 62 48"/>
+        <path d="M165 268C155 160 128 60 118 18"/>
+        <path d="M165 268C172 150 200 60 230 16"/>
+        <path d="M165 268C182 190 240 110 285 86"/>
+        <path d="M165 268C176 225 248 168 300 156"/>
+        </g>
+        <use href="#g-lf" transform="translate(10,72) rotate(-172) scale(1.2)"/>
+        <use href="#g-lf" transform="translate(62,48) rotate(-135) scale(1.1)"/>
+        <use href="#g-lf" transform="translate(118,18) rotate(-105) scale(1.1)"/>
+        <use href="#g-lf" transform="translate(230,16) rotate(-55) scale(1.1)"/>
+        <use href="#g-lf" transform="translate(285,86) rotate(-25) scale(1.1)"/>
+        <use href="#g-lf" transform="translate(300,156) rotate(-12)"/>
+        <use href="#g-lf" transform="translate(96,140) rotate(-130) scale(0.85)"/>
+        <use href="#g-lf" transform="translate(205,104) rotate(-62) scale(0.85)"/>
+        <circle cx="26" cy="62" r="4.5" fill="#C99211"/><circle cx="80" cy="34" r="4" fill="#C99211"/>
+        <circle cx="244" cy="30" r="4.5" fill="#C99211"/><circle cx="292" cy="132" r="3.5" fill="#C99211"/>
+        <circle cx="140" cy="14" r="2.5" fill="#C99211"/><circle cx="184" cy="28" r="2.5" fill="#C99211"/>
+      </svg>
+      <img class="headshot" src="assets/headshot.png" alt="Steve Archuleta">
+    </div>
     <span class="eyebrow">Santa Rosa, California · MScFE, WorldQuant University · Class of 2026</span>
     <h1>Trained on soil. <em>Calibrated</em> on data.</h1>
     <p class="hero-sub">
       I'm Steve Archuleta — a machine-learning practitioner and newly minted Master of Science in
-      Financial Engineering. I build causal-aware risk-forecasting systems and ship them the way a
-      gardener plants: deliberately, in season, and built to keep growing.
+      Financial Engineering. I build causal-aware risk-forecasting systems and deploy them the way a
+      gardener landscapes: deliberately, in season, and built to keep growing.
     </p>
     <div class="hero-cred">
       <span>M.S. Financial Engineering</span><span class="dot">●</span>
@@ -352,10 +428,10 @@
     <span class="eyebrow">The Capstone — riskml</span>
     <h2>Causal-aware, machine-learning-driven risk forecasting</h2>
     <p class="lede">
-      My MScFE 690 capstone: seven model variants — from EWMA baselines to DAG-constrained causal
-      XGBoost, MLP, and LSTM — forecasting portfolio risk under a directed-acyclic-graph feature
-      gate, validated with Diebold–Mariano inference, ablation, and stress testing, and deployed as
-      a live dashboard with CI/CD on Microsoft Azure.
+      My MScFE capstone project implements seven competing model variants (from EWMA baselines to
+      DAG-constrained causal XGBoost, MLP, and LSTM), forecasting portfolio risk under a
+      directed-acyclic-graph feature gate and validated with Diebold–Mariano inference, ablation,
+      and stress testing. It was deployed as a live dashboard with CI/CD on Microsoft Azure.
     </p>
 
     <div class="metrics" aria-label="Key results">
