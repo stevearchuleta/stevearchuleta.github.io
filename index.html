@@ -69,10 +69,11 @@
     .garden-hero .headshot{position:static;width:min(300px,85%);margin-bottom:30px}
   }
   .banner-strip{display:block;width:100%;height:190px;object-fit:cover}
-  .eyebrow{
+.eyebrow{
     font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
     color:var(--leaf);display:block;margin-bottom:18px;
   }
+  .eyebrow .keep-case { text-transform: none; }
   h1{
     font-family:Fraunces,serif;font-weight:500;
     font-size:clamp(2.6rem,6vw,4.4rem);
@@ -283,7 +284,7 @@
       </svg>
       <img class="headshot" src="assets/headshot.png" alt="Steve Archuleta">
     </div>
-    <span class="eyebrow">Santa Rosa, California · MScFE, WorldQuant University · Class of 2026</span>
+    <span class="eyebrow">Santa Rosa, California · MS<span class="keep-case">c</span>FE, WorldQuant University · Class of 2026</span>
     <h1>Trained on soil. <em>Calibrated</em> on data.</h1>
     <p class="hero-sub">
       I'm Steve Archuleta — a machine-learning practitioner and newly minted Master of Science in
