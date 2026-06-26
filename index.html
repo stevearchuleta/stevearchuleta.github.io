@@ -225,6 +225,7 @@
       <a href="#capstone">Capstone</a>
       <a href="#work">Work</a>
       <a href="#about">About</a>
+      <a href="#cv">CV</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
@@ -454,48 +455,34 @@
 <section id="work">
   <div class="wrap">
     <span class="eyebrow">Selected Work</span>
-    <h2>Six projects that show the range</h2>
+    <h2>Four projects that show the range</h2>
 
     <div class="work-list">
       <a class="work" href="https://github.com/stevearchuleta/riskml-capstone" target="_blank" rel="noopener">
         <div>
-          <h3>riskml-capstone <span>Python · Azure · Streamlit</span></h3>
-          <p>Causal-aware risk forecasting — the flagship. Research pipeline, validated models, live dashboard.</p>
+          <h3>RiskML — Causal-Aware Risk Forecasting <span>Python · Azure · Streamlit · CI/CD</span></h3>
+          <p>End-to-end causal-aware ML risk-forecasting pipeline over 14 ETFs and 2,798 trading days — 458,662 NLP-derived sentiment signals, a manually specified 9-node 7-edge Directed Acyclic Graph as a governance constraint, and seven volatility-forecasting models (EWMA, XGBoost, MLP, LSTM, and their DAG-constrained twins) evaluated under walk-forward backtesting. Live Streamlit dashboard on Azure Container Apps with federated-OIDC GitHub Actions CI/CD, atomic rollback demonstrated in 6.8 seconds.</p>
+        </div>
+        <span class="arrow">github →</span>
+      </a>
+      <a class="work" href="https://github.com/stevearchuleta/dsa-agent-azure-mlops" target="_blank" rel="noopener">
+        <div>
+          <h3>Data Science Agent — Azure MLOps <span>Azure OpenAI · LangChain · RAG · CI/CD</span></h3>
+          <p>Modular Azure MLOps data-science agent combining Azure OpenAI chat and embedding deployments with deterministic EDA, plotting, statistics, ML, SQL, and RAG-oriented tool modules. Azure ML pipeline components and job YAML; a four-workflow GitHub Actions stack covering CI lint/test, OIDC login smoke, Azure ML pipeline validation, and Azure Container Registry image build/push — with no long-lived Azure secrets and a local safety scanner enforcing secret-leak guardrails.</p>
         </div>
         <span class="arrow">github →</span>
       </a>
       <a class="work" href="https://github.com/stevearchuleta/streaming-used-car-sales-mlops-azure-cicd-pipeline" target="_blank" rel="noopener">
         <div>
-          <h3>used-car price prediction <span>MLOps · Azure ML · CI/CD</span></h3>
-          <p>An end-to-end Azure ML pipeline — random-forest price prediction with automated data prep, training, model registration, and GitHub Actions CI/CD.</p>
+          <h3>Used-Car Price Prediction — Azure ML MLOps <span>Azure ML · MLflow · Random Forest · CI/CD</span></h3>
+          <p>Production-style Azure ML pipeline for used-car price prediction — Azure ML data assets and reusable components, preprocessing and training stages, random-forest regression with MLflow tracking, model registration, and GitHub Actions CI/CD against a dedicated Great Learning resource group and workspace.</p>
         </div>
         <span class="arrow">github →</span>
       </a>
       <a class="work" href="https://github.com/stevearchuleta/great-learning-rag-medical-assistant-azure-openai-mlops" target="_blank" rel="noopener">
         <div>
-          <h3>RAG Medical Assistant <span>Azure OpenAI · FAISS · MLOps</span></h3>
-          <p>A retrieval-augmented medical Q&amp;A system on Azure ML — a two-stage pipeline building FAISS embeddings over a clinical corpus, with retrieval evaluation and CI/CD-validated deployment.</p>
-        </div>
-        <span class="arrow">github →</span>
-      </a>
-      <a class="work" href="https://github.com/stevearchuleta/data-agent" target="_blank" rel="noopener">
-        <div>
-          <h3>data-agent <span>LangChain · RAG · Azure</span></h3>
-          <p>A modular Data Science Assistant — retrieval-augmented LLM tooling for exploratory data analysis, containerized with CI/CD.</p>
-        </div>
-        <span class="arrow">github →</span>
-      </a>
-      <a class="work" href="https://github.com/stevearchuleta/Capstone_LangChain_Data_Science_Assistant_Project" target="_blank" rel="noopener">
-        <div>
-          <h3>RAG Data Science Assistant <span>GPT-4 · LangChain Agents · RAG</span></h3>
-          <p>Retrieval-augmented assistant built on the OpenAI API and LangChain agents — the research predecessor to data-agent.</p>
-        </div>
-        <span class="arrow">github →</span>
-      </a>
-      <a class="work" href="https://github.com/stevearchuleta/21_the_soul_gardeners" target="_blank" rel="noopener">
-        <div>
-          <h3>The Soul Gardeners <span>MongoDB · Express · React · Node</span></h3>
-          <p>A solo full-stack MERN capstone — a community gardening app built end to end, from schema to UI.</p>
+          <h3>RAG Medical Assistant — Azure OpenAI MLOps <span>Azure OpenAI · FAISS · MPNet · MLOps</span></h3>
+          <p>Retrieval-augmented medical Q&amp;A on Azure ML — an MLOps-first rebuild with a two-stage Azure ML pipeline that builds a FAISS vector index over a clinical PDF corpus using sentence-transformers/all-mpnet-base-v2 embeddings, then evaluates retrieval quality against Azure OpenAI chat generation. Clean credentials posture: no legacy secrets, no copied service-principal JSON, dedicated resource group.</p>
         </div>
         <span class="arrow">github →</span>
       </a>
@@ -542,6 +529,23 @@
         <dt>Bachelor of Arts</dt>
         <dd>Saint Mary's College of California, 1991 — Diversified Liberal Arts</dd>
       </dl>
+    </div>
+  </div>
+</section>
+
+<section id="cv">
+  <div class="wrap">
+    <span class="eyebrow">CV</span>
+    <h2>Curriculum vit&aelig;</h2>
+    <p class="lede">
+      A two-page summary of training, projects, and professional experience —
+      from biomedical research at the NIH and multi-store retail ownership
+      to financial engineering, AI/ML, and production MLOps.
+    </p>
+    <div class="contact-row">
+      <a class="btn solid" href="assets/Steve_Archuleta_CV_June_2026.pdf" download>
+        Steve's CV / R&eacute;sum&eacute; (PDF)
+      </a>
     </div>
   </div>
 </section>
