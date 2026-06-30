@@ -617,7 +617,7 @@
     </p>
     <div class="contact-row">
       <button class="btn solid" type="button" onclick="openCvModal()">View CV / R&eacute;sum&eacute;</button>
-      <a class="btn ghost" href="assets/Steve_Archuleta_CV_June_2026.pdf" download>Download PDF</a>
+      <a class="btn ghost" href="assets/Steve_Archuleta_CV_June_2026.pdf" onclick="downloadCv(event)">Download PDF</a>
     </div>
   </div>
 </section>
@@ -630,7 +630,7 @@
       <a class="cv-twig" href="assets/Steve_Archuleta_CV_June_2026.pdf" target="_blank" rel="noopener"
          title="Open the full CV in a new tab, where every certificate link is clickable">
         <svg width="300" height="40" viewBox="0 0 300 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <text x="60" y="14" font-family="'IBM Plex Mono',monospace" font-size="9" letter-spacing=".6" fill="#3F6B4A">open full cv to gracefully verify credentials</text>
+          <text x="36" y="14" font-family="'IBM Plex Mono',monospace" font-size="9" letter-spacing=".6" fill="#3F6B4A">open full cv to gracefully verify credentials</text>
           <!-- jagged twig stem, shortened, left-to-right, irregular kinks like a real twig -->
           <path d="M70 27 L98 24 L124 28 L154 23 L184 27 L214 24 L244 28 L266 26"
                 stroke="#3F6B4A" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
@@ -656,7 +656,7 @@
         </svg>
       </a>
       <div class="actions">
-        <a class="btn solid" href="assets/Steve_Archuleta_CV_June_2026.pdf" download>Download PDF</a>
+        <a class="btn solid" href="assets/Steve_Archuleta_CV_June_2026.pdf" target="_blank" rel="noopener">Open in New Tab</a>
         <button class="cv-modal-close" type="button" onclick="closeCvModal()" aria-label="Close CV viewer">&times;</button>
       </div>
     </div>
@@ -690,6 +690,28 @@
 </footer>
 
 <script>
+  /* ---------- Force a true download (save dialog), not in-browser display ---------- */
+  function downloadCv(e){
+    e.preventDefault();
+    var url = 'assets/Steve_Archuleta_CV_June_2026.pdf';
+    fetch(url)
+      .then(function(r){ return r.blob(); })
+      .then(function(blob){
+        var blobUrl = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = blobUrl;
+        a.download = 'Steve_Archuleta_CV_June_2026.pdf';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(blobUrl);
+      })
+      .catch(function(){
+        /* fallback: if fetch fails, open in a new tab rather than replacing the page */
+        window.open(url, '_blank', 'noopener');
+      });
+  }
+
   /* ---------- CV Option B + D: modal ---------- */
   function openCvModal(){
     var m = document.getElementById('cvModal');
