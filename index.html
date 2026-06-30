@@ -167,6 +167,16 @@
     text-transform:uppercase;color:var(--soft);
   }
   .cv-modal-head .actions{display:flex;gap:10px;align-items:center}
+  .cv-modal-head .cv-twig{
+    flex:1;display:flex;justify-content:center;align-items:center;
+    line-height:0;text-decoration:none;cursor:pointer;
+    transition:transform .15s ease,opacity .15s ease;
+  }
+  .cv-modal-head .cv-twig:hover{transform:translateY(-1px);opacity:.82}
+  .cv-modal-head .cv-twig svg{display:block;overflow:visible}
+  @media (max-width:680px){
+    .cv-modal-head .cv-twig{display:none}  /* hide twig on narrow screens to protect the header layout */
+  }
   .cv-modal-close{
     cursor:pointer;background:none;border:1px solid var(--line);border-radius:999px;
     width:34px;height:34px;font-size:1.1rem;line-height:1;color:var(--ink);
@@ -617,6 +627,34 @@
   <div class="cv-modal-inner">
     <div class="cv-modal-head">
       <span class="title">Steve Archuleta &mdash; CV / R&eacute;sum&eacute;</span>
+      <a class="cv-twig" href="assets/Steve_Archuleta_CV_June_2026.pdf" target="_blank" rel="noopener"
+         title="Open the full CV in a new tab, where every certificate link is clickable">
+        <svg width="300" height="40" viewBox="0 0 300 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <text x="60" y="14" font-family="'IBM Plex Mono',monospace" font-size="9" letter-spacing=".6" fill="#3F6B4A">open full cv to gracefully verify credentials</text>
+          <!-- jagged twig stem, shortened, left-to-right, irregular kinks like a real twig -->
+          <path d="M70 27 L98 24 L124 28 L154 23 L184 27 L214 24 L244 28 L266 26"
+                stroke="#3F6B4A" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- small broken side-twigs extending from 3 of the bends -->
+          <g stroke="#3F6B4A" stroke-width="1.6" fill="none" stroke-linecap="round">
+            <path d="M124 28 L131 34"/>
+            <path d="M184 27 L178 33"/>
+            <path d="M244 28 L251 34"/>
+          </g>
+          <!-- flowering cluster at the RIGHT end, splayed forward to form a rightward arrowhead aimed at the button -->
+          <g stroke="#3F6B4A" stroke-width="1.9" fill="none" stroke-linecap="round" transform="translate(266,26)">
+            <path d="M0 0C9 -7 13 -9 18 -10"/><path d="M0 0C11 0 16 0 21 1"/><path d="M0 0C9 7 13 9 18 10"/>
+          </g>
+          <circle cx="287" cy="16.5" r="2.2" fill="#C99211"/>
+          <circle cx="290" cy="26.5" r="2.4" fill="#B65C38"/>
+          <circle cx="287" cy="36" r="2.2" fill="#C99211"/>
+          <!-- small leaves and buds along the jagged twig -->
+          <g fill="#3F6B4A">
+            <path d="M0 0C3 -6 9 -9 14 -8C11 -3 6 0 0 0Z" transform="translate(98,24) rotate(-150) scale(0.65)"/>
+            <path d="M0 0C3 -6 9 -9 14 -8C11 -3 6 0 0 0Z" transform="translate(214,24) rotate(40) scale(0.65)"/>
+          </g>
+          <circle cx="154" cy="23" r="1.9" fill="#C99211"/>
+        </svg>
+      </a>
       <div class="actions">
         <a class="btn solid" href="assets/Steve_Archuleta_CV_June_2026.pdf" download>Download PDF</a>
         <button class="cv-modal-close" type="button" onclick="closeCvModal()" aria-label="Close CV viewer">&times;</button>
