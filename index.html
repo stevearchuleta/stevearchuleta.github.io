@@ -144,6 +144,63 @@
     font-family:"IBM Plex Mono",monospace;font-size:.8rem;color:var(--soft);background:#FBF7EC;
   }
 
+  /* ============================================================
+     CV — floating modal / lightbox
+     ============================================================ */
+  .cv-modal{
+    position:fixed;inset:0;z-index:200;display:none;
+    align-items:center;justify-content:center;padding:24px;
+    background:rgba(20,28,20,.62);backdrop-filter:blur(4px);
+  }
+  .cv-modal.open{display:flex}
+  .cv-modal-inner{
+    background:var(--paper);border-radius:14px;overflow:hidden;
+    width:min(900px,100%);height:min(88vh,1000px);
+    display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.35);
+  }
+  .cv-modal-head{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:14px 18px;border-bottom:1px solid var(--line);background:var(--card);
+  }
+  .cv-modal-head .title{
+    font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--soft);
+  }
+  .cv-modal-head .actions{display:flex;gap:10px;align-items:center}
+  .cv-modal-close{
+    cursor:pointer;background:none;border:1px solid var(--line);border-radius:999px;
+    width:34px;height:34px;font-size:1.1rem;line-height:1;color:var(--ink);
+    display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s;
+  }
+  .cv-modal-close:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .cv-modal-inner iframe{flex:1;width:100%;border:0}
+
+  /* ============================================================
+     ABOUT — certificate hover images
+     ============================================================ */
+  .creds dt.has-cert{cursor:help;position:relative}
+  .creds dt.has-cert::after{
+    content:"\25C8";margin-left:8px;color:var(--pollen);font-size:.7em;opacity:.7;
+  }
+  .about-grid{position:relative}
+  .cert-pop{
+    position:absolute;top:0;left:0;width:min(420px,100%);
+    pointer-events:none;opacity:0;transform:translateY(8px) scale(.98);
+    transition:opacity .22s ease,transform .22s ease;z-index:30;
+  }
+  .cert-pop img{
+    width:100%;height:auto;border-radius:8px;border:1px solid var(--line);
+    box-shadow:0 14px 40px rgba(32,40,31,.22);background:var(--card);
+  }
+  .cert-pop .cert-cap{
+    font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--soft);margin-top:8px;text-align:center;
+  }
+  .cert-pop.show{opacity:1;transform:translateY(0) scale(1)}
+  @media (max-width:760px){
+    .cert-pop{display:none}  /* hover images are a desktop enhancement */
+  }
+
   /* capstone */
   .metrics{
     display:flex;gap:36px;flex-wrap:wrap;margin:30px 0 8px;
@@ -461,7 +518,7 @@
       <a class="work" href="https://github.com/stevearchuleta/riskml-capstone" target="_blank" rel="noopener">
         <div>
           <h3>RiskML — Causal-Aware Risk Forecasting <span>Python · Azure · Streamlit · CI/CD</span></h3>
-          <p>End-to-end causal-aware ML risk-forecasting pipeline over 14 ETFs and 2,798 trading days — 458,662 NLP-derived sentiment signals, a manually specified 9-node 7-edge Directed Acyclic Graph as a governance constraint, and seven volatility-forecasting models (EWMA, XGBoost, MLP, LSTM, and their DAG-constrained twins) evaluated under walk-forward backtesting. Live Streamlit dashboard on Azure Container Apps with federated-OIDC GitHub Actions CI/CD, atomic rollback demonstrated in 6.8 seconds.</p>
+          <p>End-to-end causal-aware ML risk-forecasting pipeline over 14 ETFs and 2,798 trading days — 458,662 NLP-derived sentiment signals, a manually specified 9-node 7-edge Directed Acyclic Graph as a governance constraint, and seven volatility-forecasting models (EWMA, XGBoost, MLP, LSTM, and their DAG-constrained twins) evaluated under walk-forward backtesting. Live Streamlit dashboard on Azure Container Apps with federated-OIDC GitHub Actions CI/CD.</p>
         </div>
         <span class="arrow">github →</span>
       </a>
@@ -512,23 +569,29 @@
         </p>
       </div>
       <dl class="creds">
-        <dt>M.S. Financial Engineering</dt>
-        <dd>WorldQuant University, 2026 — Capstone: riskml</dd>
-        <dt>AI &amp; Machine Learning</dt>
-        <dd>UT Austin Post-Graduate Program — GPA 3.92</dd>
-        <dt>Generative AI for NLP</dt>
-        <dd>Great Learning — ranked 1st of 30</dd>
-        <dt>Microsoft AI Professional</dt>
-        <dd>Great Learning — Azure AI · ML Studio · OpenAI Foundry</dd>
-        <dt>Reinforcement Learning for LLMs</dt>
+        <dt class="has-cert" data-cert="assets/cert-mscfe.png" data-cert-label="M.S. Financial Engineering &mdash; WorldQuant University">M.S. Financial Engineering</dt>
+        <dd>WorldQuant University, 2026 &mdash; Capstone: riskml</dd>
+        <dt class="has-cert" data-cert="assets/cert-utaustin.png" data-cert-label="UT Austin PGP &mdash; AI &amp; Machine Learning">AI &amp; Machine Learning</dt>
+        <dd>UT Austin Post-Graduate Program &mdash; GPA 3.92</dd>
+        <dt class="has-cert" data-cert="assets/cert-genai-nlp.png" data-cert-label="Generative AI for NLP &mdash; Great Learning">Generative AI for NLP</dt>
+        <dd>Great Learning &mdash; ranked 1st of 30</dd>
+        <dt class="has-cert" data-cert="assets/cert-microsoft-ai.png" data-cert-label="Microsoft AI Professional &mdash; Great Learning">Microsoft AI Professional</dt>
+        <dd>Great Learning &mdash; Azure AI &middot; ML Studio &middot; OpenAI Foundry</dd>
+        <dt class="has-cert" data-cert="assets/cert-rl-llms.png" data-cert-label="Reinforcement Learning for LLMs &mdash; RAGPACK.AI">Reinforcement Learning for LLMs</dt>
         <dd>RAGPACK.AI, 2026</dd>
-        <dt>Full-Stack Engineering</dt>
-        <dd>UC Davis MERN Bootcamp · GA Advanced Analytics</dd>
-        <dt>Research</dt>
-        <dd>NIH, NHLBI — published in <em>Circulation</em></dd>
-        <dt>Bachelor of Arts</dt>
-        <dd>Saint Mary's College of California, 1991 — Diversified Liberal Arts</dd>
+        <dt class="has-cert" data-cert="assets/cert-fullstack.png" data-cert-label="Full-Stack Engineering &mdash; UC Davis &amp; General Assembly">Full-Stack Engineering</dt>
+        <dd>UC Davis MERN Bootcamp &middot; GA Advanced Analytics</dd>
+        <dt class="has-cert" data-cert="assets/cert-sql.png" data-cert-label="SQL Architecture &amp; Modeling &mdash; Great Learning">SQL Architecture &amp; Modeling</dt>
+        <dd>Great Learning &mdash; relational design, queries, normalization</dd>
+        <dt class="has-cert" data-cert="assets/cert-smc-diploma.png" data-cert-label="Bachelor of Arts &mdash; Saint Mary&rsquo;s College of California">Bachelor of Arts</dt>
+        <dd>Saint Mary's College of California, 1991 &mdash; Diversified Liberal Arts</dd>
       </dl>
+
+      <!-- hover image target: floats over the left paragraphs -->
+      <div class="cert-pop" id="certPop" aria-hidden="true">
+        <img src="" alt="" id="certPopImg">
+        <div class="cert-cap" id="certPopCap"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -538,17 +601,30 @@
     <span class="eyebrow">CV</span>
     <h2>Curriculum vit&aelig;</h2>
     <p class="lede">
-      A two-page summary of training, projects, and professional experience —
+      A two-page summary of training, projects, and professional experience &mdash;
       from biomedical research at the NIH and multi-store retail ownership
       to financial engineering, AI/ML, and production MLOps.
     </p>
     <div class="contact-row">
-      <a class="btn solid" href="assets/Steve_Archuleta_CV_June_2026.pdf" download>
-        Steve's CV / R&eacute;sum&eacute; (PDF)
-      </a>
+      <button class="btn solid" type="button" onclick="openCvModal()">View CV / R&eacute;sum&eacute;</button>
+      <a class="btn ghost" href="assets/Steve_Archuleta_CV_June_2026.pdf" download>Download PDF</a>
     </div>
   </div>
 </section>
+
+<!-- CV modal -->
+<div class="cv-modal" id="cvModal" onclick="if(event.target===this)closeCvModal()">
+  <div class="cv-modal-inner">
+    <div class="cv-modal-head">
+      <span class="title">Steve Archuleta &mdash; CV / R&eacute;sum&eacute;</span>
+      <div class="actions">
+        <a class="btn solid" href="assets/Steve_Archuleta_CV_June_2026.pdf" download>Download PDF</a>
+        <button class="cv-modal-close" type="button" onclick="closeCvModal()" aria-label="Close CV viewer">&times;</button>
+      </div>
+    </div>
+    <iframe src="" data-src="assets/Steve_Archuleta_CV_June_2026.pdf#view=FitH" title="Steve Archuleta CV" id="cvModalFrame"></iframe>
+  </div>
+</div>
 
 <section id="contact">
   <div class="wrap">
@@ -575,5 +651,51 @@
   </div>
 </footer>
 
+<script>
+  /* ---------- CV Option B + D: modal ---------- */
+  function openCvModal(){
+    var m = document.getElementById('cvModal');
+    var f = document.getElementById('cvModalFrame');
+    if(!f.src || f.getAttribute('src')===''){ f.src = f.getAttribute('data-src'); } /* lazy-load PDF */
+    m.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeCvModal(){
+    document.getElementById('cvModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){ closeCvModal(); }
+  });
+
+  /* ---------- About: certificate hover images ---------- */
+  (function(){
+    var pop = document.getElementById('certPop');
+    if(!pop) return;
+    var img = document.getElementById('certPopImg');
+    var cap = document.getElementById('certPopCap');
+    var triggers = document.querySelectorAll('.creds dt.has-cert');
+
+    triggers.forEach(function(dt){
+      dt.addEventListener('mouseenter', function(){
+        var src = dt.getAttribute('data-cert');
+        var label = dt.getAttribute('data-cert-label') || '';
+        if(!src) return;
+        img.src = src;
+        img.alt = label;
+        cap.innerHTML = label;
+        pop.classList.add('show');
+      });
+      dt.addEventListener('mouseleave', function(){
+        pop.classList.remove('show');
+      });
+    });
+
+    /* if an image is missing (e.g. diploma not yet added), hide gracefully */
+    img.addEventListener('error', function(){
+      pop.classList.remove('show');
+    });
+  })();
+</script>
 </body>
 </html>
