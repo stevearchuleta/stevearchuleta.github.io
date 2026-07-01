@@ -186,12 +186,76 @@
   .cv-modal-inner iframe{flex:1;width:100%;border:0}
 
   /* ============================================================
+     CONTACT — in-page message form (modal, mirrors CV modal)
+     ============================================================ */
+  .contact-modal{
+    position:fixed;inset:0;z-index:200;display:none;
+    align-items:center;justify-content:center;padding:24px;
+    background:rgba(20,28,20,.62);backdrop-filter:blur(4px);
+  }
+  .contact-modal.open{display:flex}
+  .contact-modal-inner{
+    background:var(--paper);border-radius:14px;overflow:hidden;
+    width:min(560px,100%);max-height:min(92vh,900px);
+    display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.35);
+  }
+  .contact-modal-head{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:14px 18px;border-bottom:1px solid var(--line);background:var(--card);
+  }
+  .contact-modal-head .title{
+    font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--soft);
+  }
+  .contact-modal-head .sprig{flex:1;display:flex;justify-content:center;align-items:center;line-height:0}
+  .contact-modal-head .sprig svg{display:block;overflow:visible}
+  @media (max-width:680px){ .contact-modal-head .sprig{display:none} }
+  .contact-modal-close{
+    cursor:pointer;background:none;border:1px solid var(--line);border-radius:999px;
+    width:34px;height:34px;font-size:1.1rem;line-height:1;color:var(--ink);
+    display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s;
+  }
+  .contact-modal-close:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+  .contact-form{padding:22px 22px 24px;overflow-y:auto}
+  .contact-form .intro{font-size:.92rem;color:var(--soft);margin:0 0 18px;line-height:1.55}
+  .contact-form .field{margin-bottom:14px}
+  .contact-form label{
+    display:block;font-family:"IBM Plex Mono",monospace;font-size:.64rem;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--leaf);margin-bottom:5px;
+  }
+  .contact-form input,
+  .contact-form textarea{
+    width:100%;box-sizing:border-box;font-family:"Source Serif 4",Georgia,serif;
+    font-size:.96rem;color:var(--ink);background:var(--card);
+    border:1px solid var(--line);border-radius:8px;padding:10px 12px;
+    transition:border-color .15s ease,box-shadow .15s ease;
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus{
+    outline:none;border-color:var(--leaf);box-shadow:0 0 0 3px rgba(63,107,74,.14);
+  }
+  .contact-form textarea{resize:vertical;min-height:120px;line-height:1.5}
+  .contact-form .form-actions{display:flex;align-items:center;gap:14px;margin-top:6px}
+  .contact-form .send-btn{
+    font-family:inherit;font-size:.9rem;cursor:pointer;border:1px solid var(--leaf);
+    background:var(--leaf);color:var(--paper);border-radius:999px;padding:10px 26px;
+    transition:background .15s ease,border-color .15s ease,opacity .15s ease;
+  }
+  .contact-form .send-btn:hover{background:var(--ink);border-color:var(--ink)}
+  .contact-form .send-btn:disabled{opacity:.55;cursor:default}
+  .contact-form .form-status{
+    font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.03em;min-height:1.2em;
+  }
+  .contact-form .form-status.ok{color:var(--leaf)}
+  .contact-form .form-status.err{color:var(--clay)}
+  /* honeypot: hidden from humans, catches bots */
+  .contact-form .botfield{position:absolute;left:-9999px;top:-9999px;height:0;width:0;
+    opacity:0;overflow:hidden;pointer-events:none}
+
+  /* ============================================================
      ABOUT — certificate hover images
      ============================================================ */
-  .creds dt.has-cert{cursor:help;position:relative}
-  .creds dt.has-cert::after{
-    content:"\25C8";margin-left:8px;color:var(--pollen);font-size:.7em;opacity:.7;
-  }
   .about-grid{position:relative}
   .cert-pop{
     position:absolute;top:0;left:0;width:min(420px,100%);
@@ -210,6 +274,50 @@
   @media (max-width:760px){
     .cert-pop{display:none}  /* hover images are a desktop enhancement */
   }
+
+  /* ============================================================
+     ABOUT — credential row (uniform thumbnails, hover preview + click lightbox)
+     ============================================================ */
+  .credrow-band{grid-column:1 / -1;margin-top:26px}
+  .credrow-band .band-label{font-family:"IBM Plex Mono",monospace;font-size:.66rem;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--soft);margin-bottom:12px}
+  .credrow{display:flex;gap:16px;overflow-x:auto;padding:6px 2px 16px;
+    scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:var(--leaf) var(--line)}
+  .credrow::-webkit-scrollbar{height:8px}
+  .credrow::-webkit-scrollbar-track{background:var(--line);border-radius:4px}
+  .credrow::-webkit-scrollbar-thumb{background:var(--leaf);border-radius:4px}
+  .credrow .thumb{flex:0 0 auto;scroll-snap-align:start;cursor:pointer;position:relative;
+    width:158px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px;
+    transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+  .credrow .thumb:hover{transform:translateY(-3px);border-color:var(--leaf);
+    box-shadow:0 8px 22px rgba(32,40,31,.12)}
+  .credrow .thumb:focus-visible{outline:2px solid var(--leaf);outline-offset:2px}
+  .credrow .thumb .frame{width:142px;height:104px;display:flex;align-items:center;
+    justify-content:center;overflow:hidden;background:#fbfbf9;border-radius:4px}
+  .credrow .thumb .frame img{max-width:100%;max-height:100%;width:auto;height:auto;
+    display:block;border-radius:2px}
+  .credrow .thumb .tlabel{font-family:"IBM Plex Mono",monospace;font-size:.58rem;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--soft);
+    text-align:center;margin-top:6px;line-height:1.3}
+  .credrow .hint{font-family:"IBM Plex Mono",monospace;font-size:.64rem;color:var(--soft);
+    letter-spacing:.04em}
+  @media (max-width:760px){
+    .credrow .thumb{width:132px}
+    .credrow .thumb .frame{width:116px;height:86px}
+  }
+
+  /* centered lightbox (opens on click) */
+  .cred-lightbox{position:fixed;inset:0;background:rgba(20,25,18,.72);z-index:200;
+    display:none;align-items:center;justify-content:center;padding:24px}
+  .cred-lightbox.open{display:flex}
+  .cred-lightbox .lb-inner{position:relative;max-width:min(90vw,760px);max-height:90vh}
+  .cred-lightbox img{display:block;max-width:100%;max-height:82vh;border-radius:10px;
+    box-shadow:0 24px 60px rgba(0,0,0,.5);background:#fff}
+  .cred-lightbox .lb-cap{font-family:"IBM Plex Mono",monospace;font-size:.72rem;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--paper);text-align:center;margin-top:12px}
+  .cred-lightbox .lb-close{position:absolute;top:-14px;right:-14px;width:34px;height:34px;
+    border-radius:50%;background:var(--ink);color:var(--paper);border:none;cursor:pointer;
+    font-size:19px;line-height:1;box-shadow:0 4px 14px rgba(0,0,0,.35)}
 
   /* capstone */
   .metrics{
@@ -579,32 +687,89 @@
         </p>
       </div>
       <dl class="creds">
-        <dt class="has-cert" data-cert="assets/cert-mscfe.png" data-cert-label="M.S. Financial Engineering &mdash; WorldQuant University">M.S. Financial Engineering</dt>
+        <dt>M.S. Financial Engineering</dt>
         <dd>WorldQuant University, 2026 &mdash; Capstone: riskml</dd>
-        <dt class="has-cert" data-cert="assets/cert-utaustin.png" data-cert-label="UT Austin PGP &mdash; AI &amp; Machine Learning">AI &amp; Machine Learning</dt>
+        <dt>AI &amp; Machine Learning</dt>
         <dd>UT Austin Post-Graduate Program &mdash; GPA 3.92</dd>
-        <dt class="has-cert" data-cert="assets/cert-genai-nlp.png" data-cert-label="Generative AI for NLP &mdash; Great Learning">Generative AI for NLP</dt>
+        <dt>Generative AI for NLP</dt>
         <dd>Great Learning &mdash; ranked 1st of 30</dd>
-        <dt class="has-cert" data-cert="assets/cert-microsoft-ai.png" data-cert-label="Microsoft AI Professional &mdash; Great Learning">Microsoft AI Professional</dt>
+        <dt>Microsoft AI Professional</dt>
         <dd>Great Learning &mdash; Azure AI &middot; ML Studio &middot; OpenAI Foundry</dd>
-        <dt class="has-cert" data-cert="assets/cert-rl-llms.png" data-cert-label="Reinforcement Learning for LLMs &mdash; RAGPACK.AI">Reinforcement Learning for LLMs</dt>
+        <dt>Reinforcement Learning for LLMs</dt>
         <dd>RAGPACK.AI, 2026</dd>
-        <dt class="has-cert" data-cert="assets/cert-fullstack.png" data-cert-label="Full-Stack Engineering &mdash; UC Davis &amp; General Assembly">Full-Stack Engineering</dt>
+        <dt>Full-Stack Engineering</dt>
         <dd>UC Davis MERN Bootcamp &middot; GA Advanced Analytics</dd>
-        <dt class="has-cert" data-cert="assets/cert-sql.png" data-cert-label="SQL Architecture &amp; Modeling &mdash; Great Learning">SQL Architecture &amp; Modeling</dt>
+        <dt>SQL Architecture &amp; Modeling</dt>
         <dd>Great Learning &mdash; relational design, queries, normalization</dd>
-        <dt class="has-cert" data-cert="assets/cert-smc-diploma.png" data-cert-label="Bachelor of Arts &mdash; Saint Mary&rsquo;s College of California">Bachelor of Arts</dt>
+        <dt>Bachelor of Arts</dt>
         <dd>Saint Mary's College of California, 1991 &mdash; Diversified Liberal Arts</dd>
       </dl>
 
-      <!-- hover image target: floats over the left paragraphs -->
+      <!-- hover preview target: floats over the left paragraphs (desktop) -->
       <div class="cert-pop" id="certPop" aria-hidden="true">
         <img src="" alt="" id="certPopImg">
         <div class="cert-cap" id="certPopCap"></div>
       </div>
+
+      <!-- credential row: uniform thumbnails, hover preview + click lightbox -->
+      <div class="credrow-band">
+        <div class="band-label">Diplomas &middot; Transcripts &middot; Certifications</div>
+        <div class="credrow" id="credRow" role="list">
+          <div class="thumb" role="listitem" tabindex="0" data-img="assets/cert-mscfe.png" data-label="WorldQuant University &mdash; Diploma">
+            <div class="frame"><img src="assets/cert-mscfe.png" alt="WorldQuant University diploma" loading="lazy"></div>
+            <div class="tlabel">WQU &middot; Diploma</div>
+          </div>
+          <div class="thumb" role="listitem" tabindex="0" data-img="assets/cert-mscfe-transcript.png" data-label="WorldQuant University &mdash; Official Transcript">
+            <div class="frame"><img src="assets/cert-mscfe-transcript.png" alt="WorldQuant University transcript" loading="lazy"></div>
+            <div class="tlabel">WQU &middot; Transcript</div>
+          </div>
+          <div class="thumb" role="listitem" tabindex="0" data-img="assets/cert-mscfe-credly.png" data-label="WorldQuant University &mdash; Verified Credly Badge">
+            <div class="frame"><img src="assets/cert-mscfe-credly.png" alt="WorldQuant University Credly badge" loading="lazy"></div>
+            <div class="tlabel">WQU &middot; Credly Badge</div>
+          </div>
+          <div class="thumb" role="listitem" tabindex="0" data-img="assets/cert-utaustin.png" data-label="UT Austin PGP &mdash; AI &amp; Machine Learning">
+            <div class="frame"><img src="assets/cert-utaustin.png" alt="UT Austin AI/ML certificate" loading="lazy"></div>
+            <div class="tlabel">UT Austin &middot; AI/ML</div>
+          </div>
+          <div class="thumb" role="listitem" tabindex="0" data-img="assets/cert-genai-nlp.png" data-label="Generative AI for NLP &mdash; Great Learning">
+            <div class="frame"><img src="assets/cert-genai-nlp.png" alt="Generative AI for NLP certificate" loading="lazy"></div>
+            <div class="tlabel">GenAI for NLP</div>
+          </div>
+          <div class="thumb" role="listitem" tabindex="0" data-img="assets/cert-rl-llms.png" data-label="Reinforcement Learning for LLMs &mdash; RAGPACK.AI">
+            <div class="frame"><img src="assets/cert-rl-llms.png" alt="Reinforcement Learning for LLMs certificate" loading="lazy"></div>
+            <div class="tlabel">RL for LLMs</div>
+          </div>
+          <div class="thumb" role="listitem" tabindex="0" data-img="assets/cert-fullstack.png" data-label="Full-Stack Engineering &mdash; UC Davis MERN Bootcamp">
+            <div class="frame"><img src="assets/cert-fullstack.png" alt="Full-Stack Engineering certificate" loading="lazy"></div>
+            <div class="tlabel">Full-Stack &middot; UC Davis</div>
+          </div>
+          <div class="thumb" role="listitem" tabindex="0" data-img="assets/cert-ga-analytics.png" data-label="Advanced Data Analytics &mdash; General Assembly">
+            <div class="frame"><img src="assets/cert-ga-analytics.png" alt="Advanced Data Analytics certificate" loading="lazy"></div>
+            <div class="tlabel">Analytics &middot; GA</div>
+          </div>
+          <div class="thumb" role="listitem" tabindex="0" data-img="assets/cert-sql.png" data-label="SQL Architecture &amp; Modeling &mdash; Great Learning">
+            <div class="frame"><img src="assets/cert-sql.png" alt="SQL Architecture and Modeling certificate" loading="lazy"></div>
+            <div class="tlabel">SQL Architecture</div>
+          </div>
+          <div class="thumb" role="listitem" tabindex="0" data-img="assets/cert-smc-diploma.png" data-label="Bachelor of Arts &mdash; Saint Mary&rsquo;s College of California">
+            <div class="frame"><img src="assets/cert-smc-diploma.png" alt="Saint Mary's College diploma" loading="lazy"></div>
+            <div class="tlabel">B.A. &middot; Saint Mary&rsquo;s</div>
+          </div>
+        </div>
+        <div class="hint">&#8596; scroll &middot; hover to preview &middot; click for full view</div>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- credential lightbox (opens on click of a thumbnail) -->
+<div class="cred-lightbox" id="credLightbox" aria-hidden="true">
+  <div class="lb-inner">
+    <button class="lb-close" id="credLbClose" type="button" aria-label="Close">&times;</button>
+    <img src="" alt="" id="credLbImg">
+    <div class="lb-cap" id="credLbCap"></div>
+  </div>
+</div>
 
 <section id="cv">
   <div class="wrap">
@@ -673,12 +838,70 @@
       thoughtful conversation.
     </p>
     <div class="contact-row">
-      <a class="btn solid" href="mailto:stevearchuleta@me.com">Email me</a>
+      <button class="btn solid" type="button" onclick="openContactModal()">Contact me</button>
       <a class="btn ghost" href="https://github.com/stevearchuleta" target="_blank" rel="noopener">GitHub</a>
       <a class="btn ghost" href="https://www.linkedin.com/in/stevearchuleta/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
   </div>
 </section>
+
+<!-- Contact form modal (mirrors the CV modal; sends via Web3Forms) -->
+<div class="contact-modal" id="contactModal" onclick="if(event.target===this)closeContactModal()">
+  <div class="contact-modal-inner">
+    <div class="contact-modal-head">
+      <span class="title">Send a message</span>
+      <span class="sprig" aria-hidden="true">
+        <svg width="180" height="34" viewBox="0 0 180 34" xmlns="http://www.w3.org/2000/svg">
+          <!-- a small garden sprig, echoing the CV twig -->
+          <path d="M20 22 L46 19 L72 23 L100 18 L128 22 L150 20"
+                stroke="#3F6B4A" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <g stroke="#3F6B4A" stroke-width="1.5" fill="none" stroke-linecap="round">
+            <path d="M72 23 L78 29"/>
+            <path d="M128 22 L122 28"/>
+          </g>
+          <g fill="#3F6B4A">
+            <path d="M0 0C3 -6 9 -9 14 -8C11 -3 6 0 0 0Z" transform="translate(46,19) rotate(-150) scale(0.6)"/>
+            <path d="M0 0C3 -6 9 -9 14 -8C11 -3 6 0 0 0Z" transform="translate(100,18) rotate(40) scale(0.6)"/>
+          </g>
+          <circle cx="150" cy="20" r="2.4" fill="#C99211"/>
+          <circle cx="128" cy="22" r="1.8" fill="#C99211"/>
+        </svg>
+      </span>
+      <button class="contact-modal-close" type="button" onclick="closeContactModal()" aria-label="Close contact form">&times;</button>
+    </div>
+
+    <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="b744ddc4-b05a-4c05-b64d-e9260496a07a">
+      <input type="hidden" name="subject" value="New message from stevearchuleta.com">
+      <input type="hidden" name="from_name" value="stevearchuleta.com contact form">
+
+      <!-- honeypot: real people never fill this; bots do -->
+      <input type="checkbox" name="botcheck" class="botfield" tabindex="-1" autocomplete="off">
+
+      <div class="field">
+        <label for="cf-name">Your name</label>
+        <input type="text" id="cf-name" name="name" required autocomplete="name" placeholder="Jane Rivera">
+      </div>
+      <div class="field">
+        <label for="cf-email">Your email</label>
+        <input type="email" id="cf-email" name="email" required autocomplete="email" placeholder="jane@company.com">
+      </div>
+      <div class="field">
+        <label for="cf-subject">Subject</label>
+        <input type="text" id="cf-subject" name="user_subject" placeholder="Opportunity in AI/ML engineering">
+      </div>
+      <div class="field">
+        <label for="cf-message">Message</label>
+        <textarea id="cf-message" name="message" required placeholder="A few lines about what you have in mind…"></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="send-btn" id="cfSend">Send message</button>
+        <span class="form-status" id="cfStatus" role="status" aria-live="polite"></span>
+      </div>
+    </form>
+  </div>
+</div>
 
 <img class="banner-strip" src="assets/banner.png" alt="A boardwalk through marsh grasses under a blue sky — Northern California wetlands">
 
@@ -725,36 +948,120 @@
     document.body.style.overflow = '';
   }
   document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape'){ closeCvModal(); }
+    if(e.key === 'Escape'){ closeCvModal(); closeContactModal(); }
   });
 
-  /* ---------- About: certificate hover images ---------- */
+  /* ---------- Contact form: modal + Web3Forms submit ---------- */
+  function openContactModal(){
+    document.getElementById('contactModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    var n = document.getElementById('cf-name');
+    if(n) setTimeout(function(){ n.focus(); }, 60);
+  }
+  function closeContactModal(){
+    document.getElementById('contactModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
   (function(){
-    var pop = document.getElementById('certPop');
-    if(!pop) return;
-    var img = document.getElementById('certPopImg');
-    var cap = document.getElementById('certPopCap');
-    var triggers = document.querySelectorAll('.creds dt.has-cert');
+    var form = document.getElementById('contactForm');
+    if(!form) return;
+    var status = document.getElementById('cfStatus');
+    var sendBtn = document.getElementById('cfSend');
 
-    triggers.forEach(function(dt){
-      dt.addEventListener('mouseenter', function(){
-        var src = dt.getAttribute('data-cert');
-        var label = dt.getAttribute('data-cert-label') || '';
-        if(!src) return;
-        img.src = src;
-        img.alt = label;
-        cap.innerHTML = label;
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      status.className = 'form-status';
+      status.textContent = 'Sending…';
+      sendBtn.disabled = true;
+
+      var data = new FormData(form);
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(function(res){ return res.json().then(function(j){ return {ok: res.ok, j: j}; }); })
+      .then(function(r){
+        if(r.ok && r.j.success){
+          status.className = 'form-status ok';
+          status.textContent = 'Message sent — thank you. I\u2019ll be in touch.';
+          form.reset();
+          sendBtn.disabled = false;
+        } else {
+          status.className = 'form-status err';
+          status.textContent = (r.j && r.j.message) ? r.j.message : 'Something went wrong. Please try again.';
+          sendBtn.disabled = false;
+        }
+      })
+      .catch(function(){
+        status.className = 'form-status err';
+        status.textContent = 'Network error — please try again, or email me directly.';
+        sendBtn.disabled = false;
+      });
+    });
+  })();
+
+  /* ---------- About: credential row — hover preview + click lightbox ---------- */
+  (function(){
+    var row = document.getElementById('credRow');
+    if(!row) return;
+
+    /* hover preview reuses the floating cert-pop overlay (desktop enhancement) */
+    var pop = document.getElementById('certPop');
+    var popImg = document.getElementById('certPopImg');
+    var popCap = document.getElementById('certPopCap');
+
+    /* click opens the centered lightbox */
+    var lb    = document.getElementById('credLightbox');
+    var lbImg = document.getElementById('credLbImg');
+    var lbCap = document.getElementById('credLbCap');
+    var lbX   = document.getElementById('credLbClose');
+
+    var thumbs = row.querySelectorAll('.thumb');
+
+    thumbs.forEach(function(t){
+      var src   = t.getAttribute('data-img');
+      var label = t.getAttribute('data-label') || '';
+
+      /* hover: float the preview over the left paragraphs */
+      t.addEventListener('mouseenter', function(){
+        if(!pop || !src) return;
+        popImg.src = src;
+        popImg.alt = label;
+        popCap.innerHTML = label;
         pop.classList.add('show');
       });
-      dt.addEventListener('mouseleave', function(){
-        pop.classList.remove('show');
+      t.addEventListener('mouseleave', function(){
+        if(pop) pop.classList.remove('show');
+      });
+
+      /* click (or Enter/Space): open the centered lightbox */
+      function openLb(){
+        if(!lb || !src) return;
+        if(pop) pop.classList.remove('show');   /* clear any hover preview */
+        lbImg.src = src;
+        lbImg.alt = label;
+        lbCap.innerHTML = label;
+        lb.classList.add('open');
+        lb.setAttribute('aria-hidden','false');
+      }
+      t.addEventListener('click', openLb);
+      t.addEventListener('keydown', function(e){
+        if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openLb(); }
       });
     });
 
-    /* if an image is missing (e.g. diploma not yet added), hide gracefully */
-    img.addEventListener('error', function(){
-      pop.classList.remove('show');
-    });
+    function closeLb(){
+      if(!lb) return;
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden','true');
+    }
+    if(lbX) lbX.addEventListener('click', closeLb);
+    if(lb)  lb.addEventListener('click', function(e){ if(e.target === lb) closeLb(); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLb(); });
+
+    /* if a preview image is missing, hide the overlay gracefully */
+    if(popImg) popImg.addEventListener('error', function(){ if(pop) pop.classList.remove('show'); });
   })();
 </script>
 </body>
